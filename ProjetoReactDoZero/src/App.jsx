@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
 
@@ -9,19 +9,20 @@ const App = () => {
 
     /*useEffect (() => {
         setTimeout(() => {
-            setUsuario([...usuarios, "Oriom"]);
+            setUsuarios([...usuarios, "Oriom"]);
         }, 3000);
     }, [])*/
 
-    const handelAddUser = () => {
+    const handleAddUser = () => {
+        if (!usuario.trim()) return;
+
         setUsuarios([...usuarios, usuario]);
         setUsuario("");
     };
 
     useEffect(() => {
-        setCount(usuarios.length)
-    }, [usuarios])
-    
+        setCount(usuarios.length);
+    }, [usuarios]);
 
     return (
         <>
@@ -33,13 +34,18 @@ const App = () => {
                     return (<p>{item} * 9 = {item * 9} </p>)
                 })} */}
                 <div>
-                    <input value={usuario} onChange={(event)=> setUsuario(event.target.value)} />
-                    <button onClick={handelAddUser}>Adicionar</button>
+                    <input
+                        value={usuario}
+                        onChange={(event) => setUsuario(event.target.value)}
+                    />
+                    <button onClick={handleAddUser}>Adicionar</button>
                 </div>
                 <hr />
-                {usuarios.map((item) => (
-                    <p>{item}</p>
-                ))}
+                <ul>
+                    {usuarios.map((nome, index) => (
+                        <li key={index}>{nome}</li>
+                    ))}
+                </ul>
             </div>
         </>
     );

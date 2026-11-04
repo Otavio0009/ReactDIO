@@ -32,4 +32,9 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
+  devServer: {
+    static: "./dist",
+    open: true,
+    hot: true,
+  },
 };
